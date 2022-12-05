@@ -1,0 +1,117 @@
+---
+title: "R_Worksheet_Siatan#5"
+author: "Floreda Mae Siatan"
+date: "2022-11-22"
+output: pdf_document
+---
+
+```{r vector1a}
+data_CS <- data.frame("Course"=c("1st", "2nd", "3rd", "4th"), "SY"= c(80, 75, 70, 60))
+ggplot(data_CS) + geom_col(aes(Course, SY))
+
+SY <- c(80, 75, 70, 60)
+Course <- c("1st", "2nd", "3rd", "4th")
+```
+
+``` {r vectir1b}
+bar <- barplot(SY, main= "Enrollment of BS Computer Science",
+              xlab = "Curriculum Year", ylab = "number of
+              students")
+```
+```{r vector2a}
+Food <- 60
+Electricity <- 10
+Savings <- 5
+Misc <- 25
+
+DeJesus_Exp <- data.frame(Food, Electricity, Savings, Misc)
+DeJesus_Exp
+```
+```{r vector2b}
+DeJesus_Exp <- c(60, 10, 5, 25)
+pie(DeJesus_Exp, main = "Expenses", col = rainbow(length(DeJesus_Exp)),
+    label = c("Food", "Electricity", "Savings", "Misc"))
+```
+```{r vector2c}
+Expense_Label <- round(DeJesus_Exp/sum(DeJesus_Exp) * 100, 1)
+Expense_Label <- paste(Expense_Label, "%", sep = "")
+```
+```{r vector2d}
+pie(DeJesus_Exp, main = "Expenses", col = rainbow(length(DeJesus_Exp)),
+  label = Expense_Label, cex=0.8)
+legend(1, c("Food", "Electricity", "Savings", "Misc"),
+       cex = 0.8, fill = rainbow(length(DeJesus_Exp)))
+```
+```{r vector3a}
+data("mtcars")
+mtC <- mtcars$mpg
+hist(mtC, main = "Histogram for mpg")
+```
+```{r vector3b}
+hist(mtC, breaks=12, col="yellow")
+```
+```{r vector3c}
+h<-hist(mtC, breaks=10, col="yellow", xlab="Miles Per Gallon",
+main="Histogram with Normal Curve")
+xfit<-seq(min(mtC),max(mtC),length=40)
+yfit<-dnorm(xfit,mean=mean(mtC),sd=sd(mtC))
+yfit <- yfit*diff(h$mids[1:2])*length(mtC)
+lines(xfit, yfit, col="blue", lwd=2)
+```
+```{r vector4a}
+data("iris")
+
+data_iris <- data.frame(iris)
+data_iris
+
+setosa_data <- subset(data_iris, Species == 'setosa')
+setosa_data
+
+data_irisb <- data.frame(iris)
+data_irisb
+
+versi_data <- subset(data_irisb, Species == 'versicolor')
+versi_data
+
+data_irisc <- data.frame(iris)
+data_irisc
+
+vergi_data <-subset(data_irisc, Species == 'virginica')
+vergi_data
+```
+```{r vector4b}
+setosa <- colMeans(setosa_data[sapply(setosa_data,is.numeric)])
+setosa
+
+versicolor <- colMeans(versi_data[sapply(versi_data,is.numeric)])
+versicolor
+
+virginica <- colMeans(vergi_data[sapply(vergi_data,is.numeric)])
+virginica
+
+combine <- rbind(setosa, versicolor, virginica)
+combine
+
+barplot(combine, beside =TRUE, main = "Iris Mean",
+xlab = "Characterisics", ylab = "Mean Scores",
+col = c("pink", "blue", "yellow"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
