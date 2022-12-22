@@ -1,0 +1,173 @@
+---
+title: "RWorksheet_Siatan#7a"
+author: "Floreda Mae Siatan"
+date: "2022-12-2"
+output: pdf_document
+---
+
+```{r vector1}
+Student <- seq(1:10)
+PreTest <- c(55,54,47,57,51,61,57,54,63,58)
+PostTest <- c(61,60,56,63,56,63,59,56,62,61)
+
+tblDF <- data.frame(Student,PreTest,PostTest)
+tblDF
+```
+```{r vector2}
+DAdata<- c(10,10,10,20,20,50,10,
+           20,10,50,20,50,20,10)
+DAdata
+
+datafactr <- factor(DAdata, ordered = TRUE)
+datafactr
+```
+
+
+```{r vector3}
+Exlvldata <- c("l","n","n","i","l","l","n","n","i","l")
+Exlvldata
+
+ExlvldataDF <- data.frame(Exlvldata)
+ExlvldataDF
+```
+
+
+```{r vector4}
+state_data <- c("tas", "sa", "qld", "nsw", "nsw", "nt", "wa", "wa", "qld",
+                "vic", "nsw", "vic", "qld", "qld", "sa", "tas", "sa", "nt",
+                "wa", "vic", "qld", "nsw", "nsw", "wa", "sa", "act", "nsw",
+                "vic", "vic", "act")
+state_data 
+```
+
+
+```{r vector5}
+statefactr <- factor(state_data)
+statefactr
+
+statelvl <- levels(statefactr)
+statelvl
+```
+
+
+
+```{r vector6}
+income <- c(60, 49, 40, 61, 64, 60, 59, 54,
+            62, 69, 70, 42, 56, 61, 61, 61, 58, 51, 48,
+            65, 49, 49, 41, 48, 52, 46, 59, 46, 58, 43)
+income
+```
+
+
+
+```{r vector7}
+incomettl <- tapply(income, state_data, mean)
+incomettl
+
+```
+
+
+```{r vector8}
+datalng <- length(incomettl)
+datalng
+
+datasd <- sd(incomettl)
+datasd
+
+data3 <- datasd/sqrt(datalng)
+data3
+
+
+```
+
+
+```{r vector9}
+data(Titanic)
+titanicDF <- data.frame(Titanic)
+titanicDF
+```
+
+
+
+```{r vector10}
+survive_data <- subset(titanicDF, Survived == "Yes")
+survive_data
+
+notsurv_data <- subset(titanicDF, Survived == "No")
+notsurv_data
+
+```
+
+
+
+```{r vector11}
+library("readxl")
+install.packages("readxl")
+
+Read <- read_excel("/SIATAN/SIATAN_repo/files/RWorksheet7a/Breast_Cancer.xlsx") 
+
+Read
+```
+
+
+
+
+```{r vector13}
+meanCS <- mean(data4$`Cell Shape`)
+meanCS
+
+standarde_lng <- length(data4$`Cell Shape`)
+standarde_lng
+
+
+```
+
+
+```{r vector14}
+standarde_sd <- sd(data4$`Cell Shape`)
+standarde_sd
+
+```
+
+
+
+```{r vector15}
+Cellshape_standarde <- standarde_sd/sqrt(standarde_lng)
+Cellshape_standarde
+```
+
+```{r vector16}
+Ts = 0.05
+Ts
+
+Ts_standarde = standarde_lng - 1
+Ts_standarde
+
+Ts = qt(p=ts/2, df=Ts_standarde,lower.tail=F)
+Ts
+
+```
+
+
+```{r vector17}
+ConfidenceI <- Ts * Cellshape_standarde
+ConfidenceI
+
+ConfidenceI_diff <- meanCS - ConfidenceI
+ConfidenceI_diff
+
+sumConfidenceI <- meanCS + ConfidenceI
+sumConfidenceI
+
+Confidence <- c(ConfidenceI_diff, sumConfidenceI)
+Confidence
+```
+
+
+```{r vector18}
+pRes <- subset(data4, Class == "malignant")
+pRes
+
+```
+
+
